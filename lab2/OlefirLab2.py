@@ -53,10 +53,6 @@ def read_province_data(data_dir='../lab1/data', pattern='P[0-9]+-[0-9]+-[0-9]+.c
 class VegetationHealthApp(server.App):
     title = "Vegetation Health Time Series"
 
-#	Зазначити інтервал тижнів, за які відбираються дані;
-
-#	Інші завдання на прохання викладача.
-
     # Read list of provinces from lab1:
     provinces = pd.read_csv('../lab1/ukr_provinces.csv', comment='#', sep='[, ]+', engine='python')
     # Prepare selectable options for provinces in "Province" input:
@@ -141,6 +137,7 @@ class VegetationHealthApp(server.App):
         series = params['series']
         province = int(params['province'])
         
+        # Define province_name by province id:
         province_name = self.provinces.loc[(self.provinces['provinceID'] == province)].iat[0,7]
         
         df = self.getData(params)
